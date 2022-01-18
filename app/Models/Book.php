@@ -15,5 +15,19 @@ class Book extends Model
 
     protected $fillable = ['title', 'author', 'description', 'publisher', 'published', 'user_id'];
 
+    public function bookPublisher()
+    {
+        return $this->hasOne(
+            BookPublisher::class
+        );
+    }
+
+    public function publisherDate()
+    {
+        return $this->hasOne(
+            PublisherDate::class
+        );
+    }
+
    
 }
