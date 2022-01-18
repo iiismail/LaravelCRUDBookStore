@@ -29,7 +29,7 @@
                         <div class="float-right">
                             <a 
                             class="border-b-2 pb-2 border-dotted italic text-green-500"
-                            href="books/{{ $book->id }}/edit">
+                            href="/books/{{ $book->id }}/edit    ">
                             Edit &rarr;
                             </a>
 
@@ -50,7 +50,9 @@
                         Author: {{ $book->author }}
                     </span>
 
-                    <h2 class = "text-gray-700 text 5xl font-bold">{{ $book->title }}</h2>
+                    <h2 class = "text-gray-700 text 5xl font-bold hover:text-grey-500">
+                       <a href="/books/{{ $book->id }}"> {{ $book->title }}</a>
+                    </h2>
 
                     <p class = "text-lg text-gray-700 py-6">
                         {{ $book->description }}

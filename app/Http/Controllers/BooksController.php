@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book; 
+use App\Models\BookPublisher;
+use App\Models\PublisherDate;
 
 class BooksController extends Controller
 {
@@ -45,13 +47,25 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         $book = new Book; 
+        $publisher = new BookPublisher;
+        $published = new PublisherDate;  
         $book->title = $request->input('title'); 
         $book->author = $request->input('author'); 
-        $book->publisher = $request->input('publisher'); 
-        $book->published = $request->input('published');
         $book->description = $request->input('description');
         $book->user_id = auth()->user()->id;
         $book->save(); 
+
+        $book = Book::whereRaw('id = (select max(`id`) from books)')->get();
+
+        $publisher->name = $request->input('publisher');
+        $publisher->book_id = $book[0]->id;  
+        $publisher->save();
+        $publisher = BookPublisher::whereRaw('id = (select max(`id`) from book_publishers)')->get();
+
+        $published->published = $request->input('published');
+        $published->publisher_id = $publisher[0]->id; 
+        $published->book_id = $book[0]->id;
+        $published->save();
 
         return redirect('/books'); 
 
@@ -66,7 +80,9 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::find($id);
+
+        return view('books.show')->with('book', $book);
     }
 
     /**
@@ -78,7 +94,7 @@ class BooksController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
-
+        
        
 
         return view('books.edit')->with('book', $book); 
@@ -97,10 +113,18 @@ class BooksController extends Controller
                 'title' => $request->input('title'),
                 'author' => $request->input('author'),
                 'description'=>$request->input('description'),
-                'publisher' => $request->input('publisher'),
-                'published' => $request->input('published'),
                 'user_id'=>auth()->user()->id
 
+
+            ]);
+
+        $publisher = BookPublisher::where('id', $id)->update([
+                'name' => $request->input('publisher'),
+
+            ]);
+
+        $publishedDate = PublisherDate::where('id', $id)->update([
+                'published' => $request->input('published'),
 
             ]);
 

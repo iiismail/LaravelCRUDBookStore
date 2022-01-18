@@ -36,13 +36,13 @@
                 type="text"
                 class="block shadow-5xl mb-10 p-2 w-80 italic placeholder-gray-400"
                 name="publisher"
-                value="{{ $book->publisher }}">
+                value="{{ $book->bookPublisher->name }}">
 
                 <input 
                 type="text"
                 class="block shadow-5xl mb-10 p-2 w-80 italic placeholder-gray-400"
                 name="published"
-                value="{{ $book->published }}">
+                value="{{ $book->publisherDate->published }}">
 
                 <button type="submit" class="bg-green-500 block shadow-5xl mb-10 p-2 w-80 uppercase font-bold">
                     Submit
