@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book; 
 use App\Models\BookPublisher;
+use App\Models\Categories;
 use App\Models\PublisherDate;
 
 class BooksController extends Controller
@@ -81,6 +82,12 @@ class BooksController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
+
+        //var_dump($book->categories);
+
+        //$categories = Categories::find($id); 
+
+        //print_r($categories); 
 
         return view('books.show')->with('book', $book);
     }

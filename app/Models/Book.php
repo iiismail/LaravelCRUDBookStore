@@ -29,5 +29,13 @@ class Book extends Model
         );
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(
+            Categories::class, 'book_categories', 'book_id', 'category_id'
+            
+        );
+    }
+
    
 }
