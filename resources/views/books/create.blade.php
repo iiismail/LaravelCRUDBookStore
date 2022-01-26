@@ -145,6 +145,15 @@ name="CreateNew" placeholder="Enter New Category">
                 </button>
             </div>
         </form>
+
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+            <li>
+                {$error}
+            </li>
+                
+            @endforeach
+        @endif
         
     </div>
     
