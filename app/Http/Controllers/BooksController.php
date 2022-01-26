@@ -53,6 +53,16 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'title'=> 'required',
+            'author'=> 'required',
+            'description'=> 'required',
+            'publisher'=> 'required',
+            'published'=> 'required',
+            
+
+        ]);
         $book = new Book; 
         $publisher = new BookPublisher;
         $published = new PublisherDate; 
@@ -146,6 +156,16 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'title'=> 'required',
+            'author'=> 'required',
+            'description'=> 'required',
+            'publisher'=> 'required',
+            'published'=> 'required|date',
+            
+
+        ]);
         $book = Book::where('id', $id)->update([
                 'title' => $request->input('title'),
                 'author' => $request->input('author'),
