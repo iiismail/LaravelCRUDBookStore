@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Book; 
+use App\Models\Book;
+use App\Models\BookCategories;
 use App\Models\BookPublisher;
 use App\Models\Categories;
 use App\Models\PublisherDate;
@@ -24,6 +25,7 @@ class BooksController extends Controller
     {
         $books = Book::all(); 
         
+        
         return view('books.index', [
             'books' => $books
         ]);
@@ -36,7 +38,11 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create'); 
+        $categories = Categories::all();
+        
+        return view('books.create',[
+            'categories' => $categories
+        ]); 
     }
 
     /**
@@ -49,7 +55,13 @@ class BooksController extends Controller
     {
         $book = new Book; 
         $publisher = new BookPublisher;
-        $published = new PublisherDate;  
+        $published = new PublisherDate; 
+        $categories = new Categories; 
+        $book_categories = new BookCategories;
+         
+
+        
+       
         $book->title = $request->input('title'); 
         $book->author = $request->input('author'); 
         $book->description = $request->input('description');
@@ -67,6 +79,23 @@ class BooksController extends Controller
         $published->publisher_id = $publisher[0]->id; 
         $published->book_id = $book[0]->id;
         $published->save();
+
+        
+
+        
+
+        if ($request->input('categories') == 'Other...'){
+            $categories->name = $request->input('CreateNew'); 
+            $categories->save();
+            $categories = Categories::whereRaw('id = (select max(`id`) from categories)')->get();
+         } else {
+            $categories = Categories::where('name', '=', $request->input('categories'))
+                     ->get();
+        }
+        $book_categories->book_id = $book[0]->id;
+        $book_categories->category_id = $categories[0]->id;
+        $book_categories->save(); 
+        
 
         return redirect('/books'); 
 
@@ -155,4 +184,6 @@ class BooksController extends Controller
 
         return redirect('/books'); 
     }
+
+
 }
