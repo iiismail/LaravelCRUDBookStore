@@ -130,10 +130,11 @@ class BooksController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
+        $categories = Categories::all();
         
        
 
-        return view('books.edit')->with('book', $book); 
+        return view('books.edit')->with('book', $book)->with('categories', $categories);    
     }
 
     /**
@@ -163,6 +164,25 @@ class BooksController extends Controller
                 'published' => $request->input('published'),
 
             ]);
+            $book = Book::find($id);
+            if ($request->input('categories') == 'Other...'){
+                
+                
+                $categories = Categories::where('id', $book->categories[0]->id)->update([
+                    'name' => $request->input('CreateNew'),
+    
+                ]);
+                
+             } else {
+                $categories = Categories::where('name', '=', $request->input('categories'))
+                         ->get();
+
+                $book_categories = BookCategories::where('category_id', $book->categories[0]->id)->update([
+                'category_id' => $categories[0]->id,
+
+                ]);
+            }
+            
 
             return redirect('/books');
 
@@ -183,6 +203,15 @@ class BooksController extends Controller
         $book->delete();
 
         return redirect('/books'); 
+    }
+
+    public function getNoOfCategories(Request $request)
+    {
+        
+        $result = $request->getNoOfCategories; 
+       
+        dd($result);
+        return response()->json(['result' => $result]); 
     }
 
 
