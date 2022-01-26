@@ -4,7 +4,7 @@
 
 <div class = "m-auto w-4/5 py-24" >
     <div class = "text-center">
-        <h1 class = "text-5xl uppercase bold">$book->name</h1>
+        <h1 class = "text-5xl uppercase bold">{{ $book->title }}</h1>
     </div>
 
     <div class = "w-5/6 py-10 text-center">
@@ -19,6 +19,15 @@
 
                 </p>
 
+                <p class ="text-left">
+                    Categories this book belongs to:
+                    @forelse ($book->categories as $category)
+                   <b>{{ $category->name }},</b> 
+                        
+                    @empty
+                        <p>This book has not been assigned to any categories</p>
+                    @endforelse
+                </p>
                 <hr class = "mt-4 mb-8">
             </div>
        

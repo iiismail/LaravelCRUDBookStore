@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Auth;
 
 Route::resource('/books', BooksController::class);
 
+Route::get('/books/noOfCategories', [BooksController::class, 'getNoOfCategories']);
+
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 

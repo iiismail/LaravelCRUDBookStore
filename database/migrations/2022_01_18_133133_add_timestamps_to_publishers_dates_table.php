@@ -26,8 +26,8 @@ class AddTimestampsToPublishersDatesTable extends Migration
     public function down()
     {
         Schema::table('publisher_dates', function (Blueprint $table) {
-            // $table->dropColumn('created_at');
-            // $table->dropColumn('updated_at');
+            $table->dropColumn('created_at');
+            $table->dropColumn('updated_at');
             // Previous migration will drop whole table anyway during refresh
         });
     }
