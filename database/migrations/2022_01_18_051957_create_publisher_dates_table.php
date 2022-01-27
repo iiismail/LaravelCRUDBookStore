@@ -17,7 +17,7 @@ class CreatePublisherDatesTable extends Migration
             $table->id('id');
             $table->unsignedInteger('publisher_id');
             $table->date('published');
-            $table->timestamps();
+            
             $table->foreign('publisher_id')
                 ->references('id')
                 ->on('books')
