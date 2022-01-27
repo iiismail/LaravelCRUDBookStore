@@ -1,45 +1,84 @@
-Annotare
-Annotare is a small application that allows logged in users take and store notes.
 
-##Tech.
-Laravel 8
-MySQL
-Tailwind
-Laravel LiveWire
-Javascript
-##Pre-reqs
-Web server capable of serving PHP
-Composer
-MySql
-Node.js & npm for front end pipeline
-##Getting started with bookShop
+**Tech**.
+
+-Laravel 8
+
+-MySQL
+
+-Tailwind
+
+-Laravel LiveWire
+
+-Javascript
+
+**Pre-reqs**
+
+-Web server capable of serving PHP
+
+-Composer
+
+-MySql
+
+-Node.js & npm for front end pipeline
+
+**Getting started with bookShop**
+
 Create a MySQL database to use for development.
-##Clone the repo:
-git clone git@github.com:hudds-awp2021-cht2520/assignment-02-iiismail
-CD into the project directory:
-cd assignment-01-example
-Install the PHP dependencies:
-php composer install
-Install the front end dependencies:
-npm install
-##Add your DB details to your .env file:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=mydb
-DB_USERNAME=myuser
-DB_PASSWORD=mypassword
-##Add the application key to the environment:
-php artisan key:generate
-Run the database migrations:
-php artisan migrate
-Run the database seeders:
-php artisan db:seed
-Configure a virtual host in your dev webserver, pointing to the /public directory.
-Running the tests
-php artisan test
 
-##Note: There are tests that are still on a feature branch that have not been pulled yet till completed. 
+**Clone the repo:**
+
+>git clone git@github.com:hudds-awp2021-cht2520/assignment-02-iiismail
+
+CD into the project directory:
+
+cd bookShop
+
+Install the PHP dependencies:
+
+php composer install
+
+Install the front end dependencies:
+
+>npm install && npm run dev
+
+** As you can see in laravel mix, most files you need have already been configured in the project, run the above command and you should be good to go **
+
+
+
+**Add your DB details to your .env file:**
+
+
+>DB_CONNECTION=mysql
+
+>BB_HOST=127.0.0.1
+
+>DB_PORT=3306
+
+>DB_DATABASE=mydb
+
+>DB_USERNAME=myuser
+
+>DB_PASSWORD=mypassword
+
+
+**Add the application key to the environment:**
+>-php artisan key:generate
+
+>-Run the database migrations:
+
+>-php artisan migrate
+
+>-Run the database seeders:
+
+>-php artisan db:seed
+
+>-Configure a virtual host in your dev webserver, pointing to the /public directory.
+
+>-Running the tests
+
+>-php artisan test
+
+**Note: There are tests that are still on a feature branch that have not been pulled yet till completed.** 
 
 ![image](https://user-images.githubusercontent.com/93193288/151268437-c125ef44-6b25-4109-9813-abc027dcd88f.png)
 
