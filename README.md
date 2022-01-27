@@ -1,66 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Annotare
+Annotare is a small application that allows logged in users take and store notes.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+##Tech.
+Laravel 8
+MySQL
+Tailwind
+Laravel LiveWire
+Javascript
+##Pre-reqs
+Web server capable of serving PHP
+Composer
+MySql
+Node.js & npm for front end pipeline
+##Getting started with bookShop
+Create a MySQL database to use for development.
+##Clone the repo:
+git clone git@github.com:hudds-awp2021-cht2520/assignment-02-iiismail
+CD into the project directory:
+cd assignment-01-example
+Install the PHP dependencies:
+php composer install
+Install the front end dependencies:
+npm install
+##Add your DB details to your .env file:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mydb
+DB_USERNAME=myuser
+DB_PASSWORD=mypassword
+##Add the application key to the environment:
+php artisan key:generate
+Run the database migrations:
+php artisan migrate
+Run the database seeders:
+php artisan db:seed
+Configure a virtual host in your dev webserver, pointing to the /public directory.
+Running the tests
+php artisan test
 
-## About Laravel
+##Note: There are tests that are still on a feature branch that have not been pulled yet till completed. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![image](https://user-images.githubusercontent.com/93193288/151268437-c125ef44-6b25-4109-9813-abc027dcd88f.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The multiple entries I did manually but that is an idea of what the project looks like. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+There are many features that I created, but one of the most challenging was the many to many relationsips between categories and books. 
+I included relationships such as hasOne, hasMany, and hasOneThrough. But the many to many required a pivot table. Once I created the pivot table in the database, my next struggle was connecting books and categories in the pivot table through the control. As you can see there is a lot of code but I managed it. I had to do this again for the update method. I did this by creating a model called BooksCategories to manage the pivot table, but I appreciate there are other ways to do this. The backend and the controller is set up to accept many cataegories to many books, however I experienced some issues allowing the user to enter a variable amount of categories. Initially I tried to use jquery but I learnt that jquery does not communicate with php, so then I tried ajax. For some reason that also failed so then I learnt about livewire. Currently livewire has no use in this project but I have kept the code there to show what I was trying to do and what I intedn to do in the future. Essentially, I wanted to create a counter which would update the number of input fields for categories in real time without a page refresh. 
 
-## Learning Laravel
+I used javascript to unhide an input field for inputting a new category. I also used middleware for routes to stop unauthorized access and I used validation in the controller to increase security. This is much better that having data validation on client side javascript. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+There are some features which I did not manage to complete, and I have left these in their feature branches for further improvement. I have kept the most stable version in develop, which is what a software engineering team would do. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+I've improved my backend understanding of laravel immensely compared to the last assignment, and have demonstrated this specifically through the model relationsips, and increased database tables, better security, and general complexity of the program.
