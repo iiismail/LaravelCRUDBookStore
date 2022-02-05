@@ -1,5 +1,6 @@
-**Project Description**.
-This is a Laravel backend project that demonstrates CRUD. It is a bookStore where users can add and remove books, and I built it for my University Advanced Web Programming Assignment. 
+**Project Description**
+
+This is a Laravel backend project that demonstrates CRUD. It is a bookShop where users can add and remove books, and I built it for my University Advanced Web Programming Assignment. 
 
 
 **Tech**.
